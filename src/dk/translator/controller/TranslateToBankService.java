@@ -54,7 +54,7 @@ public class TranslateToBankService
             sb.deleteCharAt(6);
             long convertedSsn = Long.parseLong(sb.toString());
 
-            convertedLoanRequestDTO = new ConvertedLoanRequestDTO(convertedSsn, loanRequestDTO.getCreditScore(), (int) loanRequestDTO.getLoanAmount(), loanRequestDTO.getLoanDuration());
+            convertedLoanRequestDTO = new ConvertedLoanRequestDTO(convertedSsn, loanRequestDTO.getLoanAmount(), loanRequestDTO.getLoanDuration(), loanRequestDTO.getCreditScore());
 
             System.out.println("Converted: "+convertedLoanRequestDTO.toString());
 

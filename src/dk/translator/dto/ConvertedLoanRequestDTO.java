@@ -61,6 +61,11 @@ public class ConvertedLoanRequestDTO implements Serializable
     public void setLoanDuration(int loanDuration) {
         this.loanDuration = loanDuration;
     }
+
+    @Override
+    public String toString() {
+        return "ConvertedLoanRequestDTO{" + "ssn=" + ssn + ", loanAmount=" + loanAmount + ", loanDuration=" + loanDuration + ", creditScore=" + creditScore + '}';
+    }
     
     
 }

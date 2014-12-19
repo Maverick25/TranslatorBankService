@@ -5,6 +5,9 @@
  */
 package dk.translator.main;
 
+import dk.translator.controller.TranslateToBankService;
+import java.io.IOException;
+
 /**
  *
  * @author marekrigan
@@ -13,9 +16,11 @@ public class TranslatorBankService {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
+     * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws IOException, InterruptedException {
+        TranslateToBankService.receiveMessages();
     }
     
 }
