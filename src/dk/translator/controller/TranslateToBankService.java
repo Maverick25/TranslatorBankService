@@ -9,10 +9,10 @@ import com.google.gson.Gson;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.QueueingConsumer;
+import dk.bankservice.service.BankWebService_Service;
 import dk.translator.dto.ConvertedLoanRequestDTO;
 import dk.translator.dto.LoanRequestDTO;
 import dk.translator.messaging.Receive;
-import dk.translator.messaging.Send;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -58,17 +58,14 @@ public class TranslateToBankService
 
             System.out.println("Converted: "+convertedLoanRequestDTO.toString());
 
-            sendMessage(convertedLoanRequestDTO, replyProps);
+            // use client to send it
+            
+            BankWebService_Service service = new BankWebService_Service();
+            service.getBankWebServicePort().generateQuote(message, replyProps);
 
             channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         }
         
     }
-    
-    public static void sendMessage(ConvertedLoanRequestDTO dto, AMQP.BasicProperties props) throws IOException
-    {
-        String message = gson.toJson(dto);
-        
-        Send.sendMessage(message,props);
-    }
+ 
 }
